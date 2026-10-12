@@ -1,12 +1,20 @@
 import express from "express";
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
+import cookieParser from "cookie-parser";
+
+const app = express()
+
+app.use(cookieParser());
 
 app.use(cors({
     origin : process.env.CORS_ORIGIN,
     credentials : true
 }))
 
-const app = express()
+//import routes
 
-export { app }
+import  router  from "./routes/user.routes.js";
+
+router.use("/user", router)
+
+export default app
